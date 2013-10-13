@@ -1,0 +1,121 @@
+{%- block doctype -%}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% endblock %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    {% block head %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        {% if metatags %}
+          {{ metatags }}
+        {% endif %}
+        {% if refresh %}
+          <meta http-equiv="refresh" content="{{ refresh|e }}"/>
+        {% endif %}
+        <title>{{ pageTitle|e }}</title>
+        <!--<link rel="stylesheet" href="{{ stylesheet }}" type="text/css" />-->
+        <link rel="stylesheet" href="{{ path_to_root }}css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="{{ path_to_root }}css/dockbot.css" type="text/css" />
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ path_to_root }}rss">
+        <link rel="shortcut icon" href="{{ path_to_root }}favicon.ico">
+    {% endblock %}
+  </head>
+
+
+  <body class="interface">
+
+    {% block header -%}
+        <nav class="navbar navbar-inverse" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path_to_root or '.' }}">
+                    {{ title }}
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+
+                    <li class="active">
+                        <a href="{{ path_to_root }}one_line_per_build">
+                            Recent Builds
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path_to_root }}builders">Builders</a>
+                    </li>
+                    <li>
+                        <a href="{{ path_to_root }}buildslaves">Buildslaves</a>
+                    </li>
+                    <li>
+                        <a href="{{ path_to_root }}changes">Changesources</a>
+                    </li>
+                </ul>
+
+                {% if authz.authenticated(request) %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="navbar-text">
+                            Logged in as <em>{{ authz.getUsername(request) }}</em>
+                        </li>
+                        <li>
+                            <a class="btn btn-default" href="{{ path_to_root }}logout">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                {% else %}
+                    <form class="navbar-form navbar-right" role="search"
+                          method="post" name="login" action="{{ path_to_root }}login">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="username" />
+                            <input class="form-control" type="password" name="passwd" />
+                            <button class="btn btn-default" type="submit">Login</button>
+                        </div>
+                    </form>
+                {% endif %}
+            </div>
+        </nav>
+    {% endblock %}
+
+    <div class="container">
+    {%- block barecontent -%}
+
+        {% if alert_msg != "" %}
+            <div class="alert">
+                {{ alert_msg }}
+            </div>
+        {% endif %}
+
+      {% block content %}{% endblock %}
+
+    {%- endblock -%}
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            {%- block footer -%}
+                <div class="footer" style="clear:both">
+                    <a href="https://github.com/elbaschid/dockbot">
+                        Dockbot
+                    </a>
+                    build on top of
+                    <a href="http://buildbot.net/">BuildBot</a>.
+                    Page generated: <b>{{ time }}</b> ({{ tz }})
+                </div>
+            </div>
+            {% endblock -%}
+        </div>
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ path_to_root }}js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+.row {
+    margin-bottom: 15px;
+}
+.navbar-form>.form-group>.form-control {
+    width: auto;
+}
+
+footer.footer {
+    border-top: 1px solid #ccc;
+    margin-top: 60px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.table>thead>tr>td.failure,
+.table>tbody>tr>td.failure,
+.table>tfoot>tr>td.failure,
+.table>thead>tr>th.failure,
+.table>tbody>tr>th.failure,
+.table>tfoot>tr>th.failure,
+.table>thead>tr.failure>td,
+.table>tbody>tr.failure>td,
+.table>tfoot>tr.failure>td,
+.table>thead>tr.failure>th,
+.table>tbody>tr.failure>th,
+.table>tfoot>tr.failure>th,
+.table>thead>tr>td.failure-again,
+.table>tbody>tr>td.failure-again,
+.table>tfoot>tr>td.failure-again,
+.table>thead>tr>th.failure-again,
+.table>tbody>tr>th.failure-again,
+.table>tfoot>tr>th.failure-again,
+.table>thead>tr.failure-again>td,
+.table>tbody>tr.failure-again>td,
+.table>tfoot>tr.failure-again>td,
+.table>thead>tr.failure-again>th,
+.table>tbody>tr.failure-again>th,
+.table>tfoot>tr.failure-again>th {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+}
+
+.table>thead>tr>td.running,
+.table>tbody>tr>td.running,
+.table>tfoot>tr>td.running,
+.table>thead>tr>th.running,
+.table>tbody>tr>th.running,
+.table>tfoot>tr>th.running,
+.table>thead>tr.running>td,
+.table>tbody>tr.running>td,
+.table>tfoot>tr.running>td,
+.table>thead>tr.running>th,
+.table>tbody>tr.running>th,
+.table>tfoot>tr.running>th,
+.table>thead>tr>td.waiting,
+.table>tbody>tr>td.waiting,
+.table>tfoot>tr>td.waiting,
+.table>thead>tr>th.waiting,
+.table>tbody>tr>th.waiting,
+.table>tfoot>tr>th.waiting,
+.table>thead>tr.waiting>td,
+.table>tbody>tr.waiting>td,
+.table>tfoot>tr.waiting>td,
+.table>thead>tr.waiting>th,
+.table>tbody>tr.waiting>th,
+.table>tfoot>tr.waiting>th {
+    background-color: rgb(255, 221, 51);
+    border-color: border-color: rgb(197, 197, 109);
+}
+
+.table>thead>tr>td.exception,
+.table>tbody>tr>td.exception,
+.table>tfoot>tr>td.exception,
+.table>thead>tr>th.exception,
+.table>tbody>tr>th.exception,
+.table>tfoot>tr>th.exception,
+.table>thead>tr.exception>td,
+.table>tbody>tr.exception>td,
+.table>tfoot>tr.exception>td,
+.table>thead>tr.exception>th,
+.table>tbody>tr.exception>th,
+.table>tfoot>tr.exception>th,
+.table>thead>tr>td.retry,
+.table>tbody>tr>td.retry,
+.table>tfoot>tr>td.retry,
+.table>thead>tr>th.retry,
+.table>tbody>tr>th.retry,
+.table>tfoot>tr>th.retry,
+.table>thead>tr.retry>td,
+.table>tbody>tr.retry>td,
+.table>tfoot>tr.retry>td,
+.table>thead>tr.retry>th,
+.table>tbody>tr.retry>th,
+.table>tfoot>tr.retry>th {
+    color: rgb(255, 255, 255);
+    background-color: rgb(204, 102, 204);
+    border-color: rgb(172, 160, 179);
+}
+
+failure-again, exception, offline, notstarted

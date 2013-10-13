@@ -1,0 +1,6 @@
+[program:buildbot-master]
+environment=BUILDBOT_DB_USER='{{ salt['pillar.get']('buildbot:postgres:user') }}',BUILDBOT_DB_NAME='{{ salt['pillar.get']('buildbot:postgres:database') }}',BUILDBOT_DB_PASSWORD='{{ salt['pillar.get']('buildbot:postgres:password') }}'
+command=buildbot --verbose start --nodaemon {{ master_dir }}
+user={{ buildbot_user }}
+autorestart=true
+autostart=true

@@ -1,0 +1,14 @@
+*.py[co]
+*.sw[po]
+*.log
+*.sqlite3
+*.pid
+
+environment.sh
+
+*.egg-info/
+.vagrant/
+
+master/*-job
+master/*-workdir
+master/TRY-*

@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>Changesources</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Project</th>
+                <th>Repositry</th>
+                <th>Branches</th>
+            </tr>
+            {% if sources %}
+                {% for s in sources -%}
+                    {% for branch in s.branches %}
+                    <tr>
+                        {% if loop.index == 1 %}
+                            <td rowspan="{{ s.branches|length }}">{{ s.project }}</td>
+                            <td rowspan="{{ s.branches|length }}">{{ s.repourl }}</td>
+                        {% endif %}
+
+                        <td>{{ branch }}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">none (push only)</td>
+                </tr>
+            {% endif %}
+        </table>
+    </div>
+</div>
+{% endblock %}

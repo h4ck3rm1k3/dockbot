@@ -1,0 +1,9 @@
+auth:
+    dockbot: dockbotrocks
+database:
+    name: dockbot.sqlite3
+projects:
+  - name: django-fancypages
+    repository: git://github.com/tangentlabs/django-fancypages
+    branches:
+        - master
