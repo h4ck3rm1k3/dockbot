@@ -7,16 +7,13 @@ from twisted.application import service
 from twisted.python.logfile import LogFile
 from twisted.python.log import ILogObserver, FileLogObserver
 
-from buildbot.master import BuildMaster
+#from buildbot.master import BuildMaster
+from dockbot.master import DockbotMaster
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+basedir = os.path.expanduser('~/.dockbot/')
 
 rotateLength = '10000000'
 maxRotatedFiles = '10'
-configfile = 'master.cfg'
-
-# Default umask for server
-umask = None
 
 # note: this line is matched against to check that this is a buildmaster
 # directory; do not edit it.
@@ -30,7 +27,13 @@ logfile = LogFile.fromFullPath(
 
 application.setComponent(ILogObserver, FileLogObserver(logfile).emit)
 
-m = BuildMaster(basedir, configfile, umask)
+m = DockbotMaster(
+    basedir=basedir,
+    configFileName=os.path.join(
+        os.path.dirname(__file__),
+        'master.cfg'
+    )
+)
 m.setServiceParent(application)
 m.log_rotation.rotateLength = rotateLength
 m.log_rotation.maxRotatedFiles = maxRotatedFiles

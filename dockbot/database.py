@@ -1,7 +1,15 @@
+import os
+
+
 def get_db_url(config):
     backend = config.database.get('backend', 'sqlite3')
     if backend == 'sqlite3':
-        return 'sqlite:///{0}'.format(config.database.get('name'))
+        return 'sqlite:///{0}'.format(
+            os.path.join(
+                os.path.expanduser('~/.dockbot'),
+                config.database.get('name')
+            )
+        )
     if backend == 'postgres':
         base_url = 'postgresql://{user}:{password}@localhost:{port}/{db_name}'
         return base_url.format(

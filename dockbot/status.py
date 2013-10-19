@@ -1,6 +1,17 @@
+import os
+import jinja2
+
 from buildbot.status import html
 from buildbot.status.web import authz, auth
 from buildbot.status.mail import MailNotifier
+
+
+DOCKBOT_DIR = os.path.abspath(os.path.dirname(__file__))
+print "DOCKBOT_DIR", DOCKBOT_DIR
+
+myloaders = [
+    jinja2.FileSystemLoader(os.path.join(DOCKBOT_DIR, 'master/templates')),
+]
 
 
 def get_auth(config):
@@ -27,6 +38,8 @@ def get_statuses(config):
             http_port=config.webstatus_port,
             authz=authz_cfg,
             change_hook_dialects={'github': True},
+            jinja_loaders = myloaders,
+            public_html=os.path.join(DOCKBOT_DIR, 'master/public_html')
         ),
         MailNotifier(
             fromaddr=config.from_address,
