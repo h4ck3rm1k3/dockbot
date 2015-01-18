@@ -9,12 +9,14 @@ try:
 except ImportError:
     HAS_DOCKER_CLIENT = False
 
+__virtualname__ = "docker"
 
 def __virtual__():
-    if HAS_DOCKER_CLIENT:
-        return "docker"
-    logger.error("Docker client 'docker-py' not available")
-    return False
+    if not HAS_DOCKER_CLIENT:
+        logger.error("Docker client 'docker-py' not available")
+        return False
+    else:
+        return __virtualname__
 
 
 def _get_docker_client():
